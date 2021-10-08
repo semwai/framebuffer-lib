@@ -20,6 +20,7 @@ int main()
     mouse_poll();
     demo1();
     demo2();
+    sleep(15);
     munmap(fbp, screensize);
     close(fbfd);
     return 0;
