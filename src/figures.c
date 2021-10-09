@@ -1,12 +1,11 @@
-#include "main.h"
+#include <linux/fb.h>
 #include "figures.h"
 
 extern struct fb_var_screeninfo vinfo;
 extern struct fb_fix_screeninfo finfo;
-extern long int screensize;
 extern char *fbp;
 extern long int location;
-extern int fbfd;
+
 
 void draw_rect(int x1, int y1, int x2, int y2, int r, int g, int b){
     for (int y = y1; y < y2; y++ ) {

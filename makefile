@@ -1,10 +1,15 @@
-all: build run
+all: build 
 
 build:
-	gcc src/*.c src/*.h -o out/main
+	mkdir -p out
+	gcc src/*.c src/*.h main.c -o out/main
+
+lib:
+	mkdir -p out
+	gcc -fPIC -shared -o out/framebuffer-lib.so src/*.c src/*.h main.c
 
 run:
-	./out/main
+	sudo ./out/main
 
 clear:
-	rm *.out *.gch out/*
+	rm -r out/

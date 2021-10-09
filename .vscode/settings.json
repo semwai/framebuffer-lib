@@ -1,7 +1,8 @@
 {
     "files.associations": {
-        "unistd.h": "c",
+        "fb.h": "c",
         "figures.h": "c",
-        "main.h": "c"
+        "mouse.h": "c",
+        "init.h": "c"
     }
 }

@@ -4,8 +4,8 @@
 #include <stdlib.h>
 #include <sys/prctl.h>
 #include <signal.h>
-#include <unistd.h>
-#include <pthread.h>
+
+#include "figures.h"
 #include "mouse.h"
 
 int mouse_left, mouse_middle, mouse_right;
@@ -32,7 +32,7 @@ void mouse_poll(){
     fd = open(pDevice, O_RDWR);
     if(fd == -1){
         printf("ERROR Opening %s\n", pDevice);
-        return -1;
+        return;
     }
     
     signed char dx, dy;
