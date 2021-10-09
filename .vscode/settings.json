@@ -4,5 +4,6 @@
         "figures.h": "c",
         "mouse.h": "c",
         "init.h": "c"
-    }
+    },
+    "python.pythonPath": "/bin/python3.9"
 }
