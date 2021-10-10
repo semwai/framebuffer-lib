@@ -6,7 +6,7 @@ build:
 
 lib:
 	mkdir -p out
-	gcc -fPIC -shared -o out/framebuffer-lib.so src/*.c src/*.h main.c
+	gcc -fPIC -shared -o out/framebuffer-lib.so src/*.c src/*.h
 
 run:
 	sudo ./out/main
