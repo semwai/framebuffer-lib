@@ -8,12 +8,13 @@ from framebuffer import *
 
 lib.init_buffer()
 
-response = requests.get("https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png")
-img = Image.open(BytesIO(response.content))
-image_array = np.array(img, dtype=np.dtype('i1'))
+#response = requests.get("https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png")
+#img = Image.open(BytesIO(response.content))
+img = Image.open("images/demo1.png")
+image_array = np.array(img, dtype=np.dtype('u1'))
 h, w, _ = image_array.shape
 image_array = image_array.flatten()
 #lib.draw_rect(0,0,w,h,255,255,255)
-lib.set_buffer2d(0, 0, w, h, image_array)
+lib.set_buffer2d(np.random.randint(1024 - w), np.random.randint(768 - h), w, h, image_array)
 
 lib.close_buffer()

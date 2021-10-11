@@ -15,9 +15,9 @@ void get_buffer2d(int x1, int y1, int w, int h, unsigned char* out) {
                 (i+vinfo.yoffset) * finfo.line_length;
 
             int position = ((i - y1)*w + (j - x1))*4;
-            out[position] = *(fbp + location);
+            out[position + 0] = *(fbp + location + 2);
             out[position + 1] = *(fbp + location + 1);
-            out[position + 2] = *(fbp + location + 2);
+            out[position + 2] = *(fbp + location + 0);
             out[position + 3] = *(fbp + location + 3);
         }
 }
@@ -27,14 +27,14 @@ void set_buffer2d(int x1, int y1, int w, int h, unsigned char* in) {
     for (i = y1; i < y1 + h; i++)
         for (j = x1; j < x1 + w; j++) {
             location = (j+vinfo.xoffset) * (vinfo.bits_per_pixel/8) + (i+vinfo.yoffset) * finfo.line_length;
-             
             int position = ((i - y1)*w + (j - x1))*4;
             int transparency = in[position + 3];
-            float tr = (transparency/255.0);
-            float ntr = 1 - tr;
-            for (k = 0; k < 3; k++)
-                *(fbp + location + k) = (char)(tr*in[position + k]+ ntr* *(fbp + location + k));     
-             
+            float tr = transparency/255.0;
+            for (k = 0; k < 3; k++){
+                char *loc = fbp + location + 2 - k;
+                float new_color = tr*(in[position + k]/255.0) + (1.0 - tr) * (*loc/255.0);
+                *loc = (unsigned char)(new_color*255.0);
+            }
             *(fbp + location + 3) = 0; 
         }
 }
