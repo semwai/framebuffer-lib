@@ -27,7 +27,7 @@ def draw_text(input, x, y, fontsize=14, font='fonts/JetBrainsMono-Medium.ttf'):
     """
     c = char_to_pixels(input, fontsize=fontsize)*255
     h,w = c.shape
-    c = np.array([[e, e, e, e] for e in c.flatten()]).flatten().astype(dtype=np.dtype('i1'))
+    c = np.array([[e, e, e, e] for e in c.ravel()]).ravel().astype(dtype=np.dtype('u1'))
     lib.set_buffer2d(x, y, w, h, c)
     return w,h
 
