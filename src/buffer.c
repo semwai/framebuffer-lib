@@ -28,13 +28,12 @@ void set_buffer2d(int x1, int y1, int w, int h, unsigned char* in) {
         for (j = x1; j < x1 + w; j++) {
             location = (j+vinfo.xoffset) * (vinfo.bits_per_pixel/8) + (i+vinfo.yoffset) * finfo.line_length;
             int position = ((i - y1)*w + (j - x1))*4;
-            int transparency = in[position + 3];
-            float tr = transparency/255.0;
+            float tr = in[position + 3]/255.0;
             for (k = 0; k < 3; k++){
-                char *loc = fbp + location + 2 - k;
+                unsigned char *loc = fbp + location + 2 - k;
                 float new_color = tr*(in[position + k]/255.0) + (1.0 - tr) * (*loc/255.0);
                 *loc = (unsigned char)(new_color*255.0);
             }
-            *(fbp + location + 3) = 0; 
+            *(fbp + location + 3) = 255; 
         }
 }
