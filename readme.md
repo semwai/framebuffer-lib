@@ -23,3 +23,5 @@ linux framebuffer файл /dev/fb0 позволяет выводить на э�
 И запустить выбранный python файл\
 `cd python`\
 `sudo python3 test_mouse1.py`
+
+[png file in terminal](https://www.youtube.com/watch?v=JM0PU0z6nyM)

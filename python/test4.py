@@ -8,9 +8,9 @@ from framebuffer import *
 
 lib.init_buffer()
 
-response = requests.get("https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png")
-img = Image.open(BytesIO(response.content))
-#img = Image.open("images/demo1.png")
+#response = requests.get("https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png")
+#img = Image.open(BytesIO(response.content))
+img = Image.open("images/demo1.png")
 image_array = np.array(img, dtype=np.dtype('u1'))
 h, w, _ = image_array.shape
 image_array = image_array.ravel()
