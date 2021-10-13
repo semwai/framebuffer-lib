@@ -7,6 +7,7 @@ build:
 lib:
 	mkdir -p out
 	gcc -fPIC -shared -o out/framebuffer-lib.so src/*.c src/*.h
+	cp out/framebuffer-lib.so python/framebuffer/framebuffer/framebuffer-lib.so
 
 run:
 	sudo ./out/main

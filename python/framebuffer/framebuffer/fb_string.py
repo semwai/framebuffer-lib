@@ -23,7 +23,7 @@ def char_to_pixels(ch, path='fonts/JetBrainsMono-Medium.ttf', fontsize=14):
 
 def draw_text(input, x, y, fontsize=14, font='fonts/JetBrainsMono-Medium.ttf', color=(255, 255, 255, 255)):
     """
-    Draw char and return width & height
+    Draw text and return width & height
     """
     c = char_to_pixels(input, fontsize=fontsize)
     h,w = c.shape
