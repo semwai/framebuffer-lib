@@ -9,6 +9,9 @@ lib:
 	gcc -fPIC -shared -o out/framebuffer-lib.so src/*.c src/*.h
 	cp out/framebuffer-lib.so python/framebuffer/framebuffer/framebuffer-lib.so
 
+python-lib:
+	pip install --upgrade --no-deps --force-reinstall python/framebuffer
+
 run:
 	sudo ./out/main
 
