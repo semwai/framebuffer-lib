@@ -1,15 +1,11 @@
 import numpy as np
-#from numpy.ctypeslib import ndpointer 
+from framebuffer.framebuffer import Framebuffer
 
-from framebuffer import framebuffer as fb
-
-fb.init_buffer()
-#lib.draw_rect(0, 0, 1024, 768, 192, 192, 192)
-
-w, h = 500, 500
-data = np.array([0, 0, 127, 127] * (w * h), dtype=np.dtype('u1'))
-#x, y = np.random.randint(1024 - w), np.random.randint(768 - h)
-x, y = 0, 0
-fb.lib.set_buffer2d(x, y, w, h, data)
-
-fb.lib.close_buffer() 
+fb = Framebuffer()
+start = 0, 0
+size = 500, 500
+color = 255, 0, 0
+fb.draw_rect(start=start, size=size, color=color)
+# create 'second' object, but it is a singleton
+fb2 = Framebuffer()
+fb2.draw_rect(start=(100, 100), size=(250, 250), color=(255, 255, 255))
