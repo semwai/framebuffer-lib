@@ -5,15 +5,10 @@ import numpy as np
 from numpy.ctypeslib import ndpointer 
 
 
-lib = CDLL("../out/framebuffer-lib.so")
-lib.init_buffer()
+from framebuffer.framebuffer import Framebuffer
 
-
-lib.get_buffer2d.argtypes = [c_int, c_int, c_int, c_int, ndpointer(dtype=np.dtype('i1'), flags='C') ]
-lib.set_buffer2d.argtypes = [c_int, c_int, c_int, c_int, ndpointer(dtype=np.dtype('i1'), flags='C') ]
-
-
-lib.clear_screen()
+fb = Framebuffer()
+fb.clear_screen()
 y = np.zeros((512*384*4), dtype=np.dtype('u1'))
 y[0::4] = 255
 y[1::4] = 0
@@ -23,11 +18,9 @@ y[(192*512+256)*3] = 0
  
 
 for i in range(100):
-    lib.set_buffer2d(i, i, 512, 384, y)
-    #sleep(0.05)
+    fb.set_buffer2d(start=(i, i), size=(512, 384), buffer=y)
 
 
 z = np.zeros((612*484*4), dtype=np.dtype('u1'))
-lib.get_buffer2d(0, 0, 612, 484, z)
-lib.set_buffer2d(100, 0, 612, 484, z)
-lib.close_buffer()
+fb.get_buffer2d(start=(0, 0), size=(612, 484), buffer=z)
+fb.set_buffer2d(start=(100, 0), size=(612, 484), buffer=z)

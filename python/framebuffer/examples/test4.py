@@ -5,17 +5,18 @@ import requests
 from io import BytesIO
 import sys
 
-from framebuffer import framebuffer as fb
+from framebuffer.framebuffer import Framebuffer
 
-fb.init_buffer()
+fb = Framebuffer()
 
-#response = requests.get("https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png")
-#img = Image.open(BytesIO(response.content))
-img = Image.open("images/demo1.png")
+response = requests.get("https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png")
+img = Image.open(BytesIO(response.content))
 image_array = np.array(img, dtype=np.dtype('u1'))
 h, w, _ = image_array.shape
-image_array = image_array.ravel()
-#lib.draw_rect(0,0,w,h,255,255,255)
-fb.lib.set_buffer2d(np.random.randint(1024 - w), np.random.randint(768 - h), w, h, image_array)
 
-fb.lib.close_buffer()
+fb.set_buffer2d(
+    start=(np.random.randint(1024 - w), np.random.randint(768 - h)), 
+    size=(w, h), 
+    buffer=image_array.ravel())
+
+ 
