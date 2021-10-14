@@ -12,7 +12,7 @@ lib:
 python-lib: lib
 	pip install --upgrade --no-deps --force-reinstall python/framebuffer
 
-# make transparent cursor and close tty1 input & output, now use tt2 (ctrl+alt+f2)
+# make transparent cursor and close tty1 input & output, now use tty2 (ctrl+alt+f2)
 # do it inside virtual machine, not ssh
 kill-tty1:
 	echo -n -e '\e[?1;14;0c'

@@ -16,7 +16,12 @@ void left_click(){
         draw_sphere(mouse_x, mouse_y, 20, 0, 255, 0);
 }
 
-void mouse_poll(void (*mouse_move_event)(int, int), void (*left_click_event)(int, int), void (*middle_click_event)(int, int), void (*right_click_event)(int, int)){
+void mouse_poll(
+        void* sender,
+        void (*mouse_move_event)(void*, int, int),
+        void (*left_click_event)(void*, int, int), 
+        void (*middle_click_event)(void*, int, int),
+        void (*right_click_event)(void*, int, int)){
     int pid;
     pid=fork();
     if (pid!=0){
@@ -52,15 +57,15 @@ void mouse_poll(void (*mouse_move_event)(int, int), void (*left_click_event)(int
             mouse_y -= dy;
 
 
-            mouse_move_event(mouse_x, mouse_y);
+            mouse_move_event(sender, mouse_x, mouse_y);
             if (mouse_left && !old_mouse_left) {
-                left_click_event(mouse_x, mouse_y);
+                left_click_event(sender, mouse_x, mouse_y);
             }
             if (mouse_right && !old_mouse_right) {
-                right_click_event(mouse_x, mouse_y);
+                right_click_event(sender, mouse_x, mouse_y);
             }
             if (mouse_middle && !old_mouse_middle) {
-                middle_click_event(mouse_x, mouse_y);
+                middle_click_event(sender, mouse_x, mouse_y);
             }
         }
     }

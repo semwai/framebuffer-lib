@@ -1,10 +1,9 @@
-from framebuffer import *
-from framebuffer_font import char_to_pixels, draw_text
+from framebuffer.fb_string import FB_Writer
+from framebuffer.framebuffer import Framebuffer
 
-lib.init_buffer()
+fb = Framebuffer()
+fb.clear_screen()
 
-#lib.clear_screen()
-color = (255, 255, 255, 192)
-draw_text("ABC", 0, 0, 40, color=color)
-draw_text("Hello to /dev/fb0", 0, 40, 40, color=color)
-lib.close_buffer()
+writer = FB_Writer(size=50)
+writer.print("HELLO", 350, 50)
+writer.print("   WORLD", 350, 100)

@@ -3,7 +3,6 @@ import numpy as np
 from numpy.ctypeslib import ndpointer 
 import importlib_resources
 
-
 class Framebuffer(object):
     
 
@@ -23,7 +22,11 @@ class Framebuffer(object):
             self.__lib.clear_screen.argtypes = []
             self.__lib.get_buffer2d.argtypes = [c_int, c_int, c_int, c_int, ndpointer(dtype=np.dtype('u1'), flags='C') ]
             self.__lib.set_buffer2d.argtypes = [c_int, c_int, c_int, c_int, ndpointer(dtype=np.dtype('u1'), flags='C') ]
-            self.__lib.mouse_poll.argtypes = [CFUNCTYPE(None, c_int, c_int)]
+            self.__lib.mouse_poll.argtypes = [py_object, 
+                CFUNCTYPE(None, py_object, c_int, c_int), 
+                CFUNCTYPE(None, py_object, c_int, c_int), 
+                CFUNCTYPE(None, py_object, c_int, c_int), 
+                CFUNCTYPE(None, py_object, c_int, c_int)]
 
             self.__lib.init_buffer()
         return self.instance
@@ -52,3 +55,7 @@ class Framebuffer(object):
 
     def set_buffer2d(self, start=(0, 0), size=(0, 0), buffer=np.array([], dtype=np.dtype('u1'))):
         self.__lib.set_buffer2d(start[0], start[1], size[0], size[1], buffer)
+
+    def set_mouse_poll(self, sender, move, left_click, middle_click, right_click):
+        ftype = CFUNCTYPE(None, py_object, c_int, c_int)
+        self.__lib.mouse_poll(sender, ftype(move), ftype(left_click), ftype(middle_click), ftype(right_click))
