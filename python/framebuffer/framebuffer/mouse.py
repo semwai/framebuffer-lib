@@ -6,11 +6,11 @@ class Mouse(object):
     """
     Mouse event handler
     """
+
     def onMove(self, x, y):
         pass
 
     def onLeftClick(self, x, y):
-        print('old')
         pass
 
     def onMiddleClick(self, x, y):

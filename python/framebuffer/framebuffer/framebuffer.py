@@ -41,11 +41,11 @@ class Framebuffer(object):
     def draw_sphere(self, center=(100, 100), radious=25, color=(255, 255, 255)):
         self.__lib.draw_sphere(center[0], center[1], radious, color[0], color[1], color[2])
 
-    def draw_circle(self, center=(100, 100), radious=(15,25), color=(255, 255, 255)):
+    def draw_circle(self, center=(100, 100), radious=(15, 25), color=(255, 255, 255)):
         """ 
         circle with border = rad[1] - rad[0]
         """
-        self.__lib.draw_sphere(center[0], center[1], radious[0], radious[1], color[0], color[1], color[2])
+        self.__lib.draw_circle(center[0], center[1], radious[0], radious[1], color[0], color[1], color[2])
 
     def clear_screen(self):
         self.__lib.clear_screen()
