@@ -35,6 +35,15 @@ class Framebuffer(object):
         self.__lib.close_buffer()
         print('close buffer\n')
 
+    def get_screen_width(self):
+        return self.__lib.get_screen_width()
+
+    def get_screen_height(self):
+        return self.__lib.get_screen_height()
+
+    def get_screen_size(self):
+        return self.get_screen_width(), self.get_screen_height()
+
     def draw_rect(self, start=(0, 0), size=(100, 100), color=(255, 255, 255)):
         self.__lib.draw_rect(start[0], start[1], size[0], size[1], color[0], color[1], color[2])
 

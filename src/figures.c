@@ -7,9 +7,9 @@ extern char *fbp;
 extern long int location;
 
 
-void draw_rect(int x1, int y1, int x2, int y2, int r, int g, int b){
-    for (int y = y1; y < y2; y++ ) {
-    	for (int x = x1; x < x2; x++ ) {
+void draw_rect(int x1, int y1, int w, int h, int r, int g, int b){
+    for (int y = y1; y < y1 + h; y++ ) {
+    	for (int x = x1; x < x1 + w; x++ ) {
             location = (x+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
                 (y+vinfo.yoffset) * finfo.line_length;
             if ( vinfo.bits_per_pixel == 32 ) {
@@ -70,5 +70,5 @@ void draw_circle(int x1, int y1, int radin, int radout, int r, int g, int b) {
 }
 
 void clear_screen(){
-    draw_rect(0, 0, 1024, 768, 0, 0, 0);
+    draw_rect(0, 0, vinfo.xres, vinfo.yres, 0, 0, 0);
 }

@@ -48,3 +48,11 @@ void close_buffer(){
     munmap(fbp, screensize);
     close(fbfd);
 }
+
+unsigned int get_screen_width(){
+    return vinfo.xres;
+}
+
+unsigned int get_screen_height(){
+    return vinfo.yres;
+}
