@@ -10,8 +10,11 @@ lib:
 	cp out/framebuffer-lib.so python/framebuffer/framebuffer/framebuffer-lib.so
 
 python-lib: lib
-	pip install --upgrade --no-deps --force-reinstall python/framebuffer
+	pip install --upgrade --force-reinstall python/framebuffer
 
+# use this when you have already installed the python dependencies
+python-lib-fast: lib 
+	pip install --upgrade --no-deps --force-reinstall python/framebuffer
 # make transparent cursor and close tty1 input & output, now use tty2 (ctrl+alt+f2)
 # do it inside virtual machine, not ssh
 kill-tty1:
